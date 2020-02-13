@@ -6,15 +6,14 @@ using UnityEngine.SceneManagement;
 public class ApplePicker : MonoBehaviour
 {
     [Header("Set In Inspector")]
-    public GameObject basketPrefab;
-    public List<GameObject> basketList;
+    [SerializeField] private GameObject basketPrefab = null;
+    [SerializeField] private List<GameObject> basketList;
+    [SerializeField] private int numBaskets = 3;
+    [SerializeField] private float basketBottomY = -14f;
+    [SerializeField] private float basketSpacingY = 2f;
+    [SerializeField] private string sceneGameOver = "GameOver";
 
-    public int numBaskets = 3;
-    public float basketBottomY = -14f;
-    public float basketSpacingY = 2f;
-    public string sceneGameOver = "GameOver";
-
-    void Start()
+    private void Start()
     {
         basketList = new List<GameObject>();
         for (int i=0; i<numBaskets; i++)

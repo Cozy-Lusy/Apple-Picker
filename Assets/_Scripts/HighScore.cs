@@ -1,31 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class HighScore : MonoBehaviour
 {
-    public static int score = 0;
+    public static int Score = 0;
 
     private void Awake()
     {
         //Если значение HighScore уже существует в PlayerPrefs, прочитать его
         if (PlayerPrefs.HasKey("HighScore"))
         {
-            score = PlayerPrefs.GetInt("HighScore");
+            Score = PlayerPrefs.GetInt("HighScore");
         }
-        PlayerPrefs.SetInt("HighScore", score); //Сохранить высшее достижение в PlayerPrefs
+        PlayerPrefs.SetInt("HighScore", Score); //Сохранить высшее достижение в PlayerPrefs
     }
 
-    void Update()
+    private void Update()
     {
-        Text gt = GetComponent<Text>();
-        gt.text = "High Score: " + score;
+        TextMeshProUGUI gt = GetComponent<TextMeshProUGUI>();
+        gt.text = "High Score: " + Score;
 
         //Обновить HighScore в PlayerPrefs, если необходимо
-        if (score > PlayerPrefs.GetInt("HighScore"))
+        if (Score > PlayerPrefs.GetInt("HighScore"))
         {
-            PlayerPrefs.SetInt("HighScore", score);
+            PlayerPrefs.SetInt("HighScore", Score);
         }
     }
 }

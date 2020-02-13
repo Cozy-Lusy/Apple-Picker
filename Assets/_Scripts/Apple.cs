@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Apple : MonoBehaviour
 {
-    public static float bottomY = -20f;
-    
-    void Update()
+    public static float BottomY = -20f;
+
+    private void Update()
     {
-        if (transform.position.y < bottomY)
+        if (transform.position.y < BottomY)
         {
             Destroy(this.gameObject);
 

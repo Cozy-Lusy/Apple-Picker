@@ -5,27 +5,26 @@ using UnityEngine;
 public class AppleTree : MonoBehaviour
 {
     [Header("Set in Inspector")]
-    public GameObject applePrefab; //Шаблон для создания яблок
+    [SerializeField] private GameObject applePrefab = null; //Шаблон для создания яблок
+    [SerializeField] private float speed = 1f; //Скорость движения яблони
+    [SerializeField] private float leftAndRightEdge = 10f; //Расстояние, на котором должно изменяться направление движения яблони
+    [SerializeField] private float chanceToChangeDerections = 0.1f; //Вероятность случайного изменения направления движения
+    [SerializeField] private float secondsBetweenAppleDrops = 1f; //Частота создания экземпляров яблок
 
-    public float speed = 1f; //Скорость движения яблони
-    public float leftAndRightEdge = 10f; //Расстояние, на котором должно изменяться направление движения яблони
-    public float chanceToChangeDerections = 0.1f; //Вероятность случайного изменения направления движения
-    public float secondsBetweenAppleDrops = 1f; //Частота создания экземпляров яблок
-
-    void Start()
+    private void Start()
     {
         //Сбрасывать яблоки раз в секунду
         Invoke("DropApple", 2f);
     }
 
-    void DropApple()
+    private void DropApple()
     {
         GameObject apple = Instantiate<GameObject>(applePrefab);
         apple.transform.position = transform.position;
         Invoke("DropApple", secondsBetweenAppleDrops);
     }
 
-    void Update()
+    private void Update()
     {
         //Простое перемещение
         Vector3 pos = transform.position;
